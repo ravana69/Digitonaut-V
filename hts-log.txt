@@ -1,0 +1,11 @@
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 17 Feb 2023 09:52:21 at digitonaut.com/art/velocibox/ digitonaut.com/art/vertex_atmosphere/ digitonaut.com/art/vertex-ocean/ digitonaut.com/art/vintage_labyrinth/ digitonaut.com/art/viral_spiral/ digitonaut.com/art/vivid_factory/ digitonaut.com/art/volcanic_planet/ digitonaut.com/art/volumetric_plankton/ digitonaut.com/art/voxel_flythrough/ digitonaut.com/art/voxel_hall_colors/ digitonaut.com/art/voxel_planet/ digitonaut.com/art/voxel_reflection/ digitonaut.com/art/voxel_tunnel/ digitonaut.com/art/voxel_world/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" digitonaut.com/art/velocibox/ digitonaut.com/art/vertex_atmosphere/ digitonaut.com/art/vertex-ocean/ digitonaut.com/art/vintage_labyrinth/ digitonaut.com/art/viral_spiral/ digitonaut.com/art/vivid_factory/ digitonaut.com/art/volcanic_planet/ digitonaut.com/art/volumetric_plankton/ digitonaut.com/art/voxel_flythrough/ digitonaut.com/art/voxel_hall_colors/ digitonaut.com/art/voxel_planet/ digitonaut.com/art/voxel_reflection/ digitonaut.com/art/voxel_tunnel/ digitonaut.com/art/voxel_world/ -O1 "C:\My Web Sites\v" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 18 seconds : 39 links scanned, 38 files written (6764655 bytes overall) [1787752 bytes received at 22919 bytes/sec], 6499824 bytes transferred using HTTP compression in 32 files, ratio 23%, 6.5 requests per connection
+(No errors, 0 warnings, 0 messages)

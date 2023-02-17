@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from digitonaut.com/art/volumetric_plankton/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Feb 2023 04:22:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset='utf-8'\>
+<meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'><title>Volumetric Plankton</title>
+
+<script src="shader-web-background.min.js"></script>
+
+<script type="x-shader/x-fragment" id="Image">
+precision highp float;
+uniform vec2  iResolution;
+uniform float iTime;
+
+// -------------------------------------------------------------------------------------------------- Paste your Shadertoy code here:
+// License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+// Created by S. Guillitte 2015
+
+float zoom=1.;
+
+vec2 cmul( vec2 a, vec2 b )  { return vec2( a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x ); }
+vec2 csqr( vec2 a )  { return vec2( a.x*a.x - a.y*a.y, 2.*a.x*a.y  ); }
+
+
+mat2 rot(float a) {
+	return mat2(cos(a),sin(a),-sin(a),cos(a));	
+}
+
+
+
+float map(in vec3 p) {
+	
+	float res = 0.;
+	
+    vec3 c = p;
+	for (int i = 0; i < 10; ++i) {
+        p =.7*abs(p) -.7;
+        p.yz= csqr(p.yz);
+        p=p.zxy;
+        res += exp(-6. * abs(dot(p,c)/dot(p,p)));
+        
+	}
+	return res/2.;
+}
+
+
+
+vec3 raymarch( in vec3 ro, vec3 rd )
+{
+    float t = 4.0;
+    float dt = .05;
+    vec3 col= vec3(0.);
+    for( int i=0; i<64; i++ )
+	{
+        if(t>12.)break;
+        float c = map(ro+t*rd);               
+        t+=dt*exp(-2.*c);
+        col = .99*col+ .08*vec3(c*c, c, c*c*c);		
+    }    
+    return col;
+}
+
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+	float time = iTime;
+    vec2 q = fragCoord.xy / iResolution.xy;
+    vec2 p = -1.0 + 2.0 * q;
+    p.x *= iResolution.x/iResolution.y;
+    vec2 m = vec2(0.);
+	//if( iMouse.z>0.0 )m = iMouse.xy/iResolution.xy*3.14;
+    m-=.5;
+
+    // camera
+
+    vec3 ro = zoom*vec3(4.);
+    ro.yz*=rot(m.y);
+    ro.xz*=rot(m.x+ 0.1*time);
+    vec3 ta = vec3( 0.0 , 0.0, 0.0 );
+    vec3 ww = normalize( ta - ro );
+    vec3 uu = normalize( cross(ww,vec3(0.0,1.0,0.0) ) );
+    vec3 vv = normalize( cross(uu,ww));
+    vec3 rd = normalize( p.x*uu + p.y*vv + 4.0*ww );
+    
+
+	// raymarch
+    vec3 col = raymarch(ro,rd);
+    
+	
+	// shade
+    
+    col =  .5 *(log(1.+col));
+    col = clamp(col,0.,1.);
+    fragColor = vec4( col, 1.0 );
+
+}
+
+// -------------------------------------------------------------------------------------------------- End of Shadertoy code
+
+
+void main() {
+mainImage(gl_FragColor, gl_FragCoord.xy);
+}
+</script>
+<script>
+shaderWebBackground.shade({
+	shaders: {
+		Image: {
+			uniforms: {
+				iResolution: (gl, loc, ctx) => gl.uniform2f(loc, ctx.width, ctx.height),
+				iTime: (gl, loc) => gl.uniform1f(loc, performance.now() / 1000)
+			}
+		}
+	}
+});
+</script>
+</head>
+<body>
+</body>
+
+<!-- Mirrored from digitonaut.com/art/volumetric_plankton/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Feb 2023 04:22:45 GMT -->
+</html>

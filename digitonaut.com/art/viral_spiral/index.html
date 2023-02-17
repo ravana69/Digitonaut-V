@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<!-- Mirrored from digitonaut.com/art/viral_spiral/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Feb 2023 04:22:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset='utf-8'\>
+<meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'><title>Viral Spiral</title>
+
+<style>
+canvas {
+	position:fixed;
+	left:50%; top:50%;
+	transform:translate(-50%,-50%);
+	border:0px; outline:0px;
+}
+</style>
+</head>
+<body style='margin:0px;overflow:hidden;background:#000;'>
+
+<script type="application/processing">
+// Started as this: https://www.khanacademy.org/computer-programming/crazy-cosmic-flower/6565370573619200
+// MouseX adjusts direction and speed, click to toggle circle/spiral.
+// map, spiral, bezier, triangle, line, ellipse, rotate, scale
+
+float incr;
+boolean spiral;
+
+void setup() {
+  size(min(screenWidth,screenHeight),min(screenWidth,screenHeight));
+  strokeWeight(.5);
+  spiral = true;
+}
+
+void draw() {
+  background(0);
+  
+  pushMatrix();
+  translate(width/2, height/2);
+  for (int i = 0; i < 65; i++) {//82
+    if (i%2 == 0) fill(0);
+    else fill(#FCFAC4);
+    bezier(200, 34, 300, 141, 63, 10, 49, 91);
+    fill(#03FFFD);
+    ellipse(200, 200, 8, 8);
+    fill(#03FFFD, 220);
+    triangle(100, 88, 100, 100, 193, 174);
+    stroke(#03FFFD);
+    line(173, 75, 200, 200);
+    rotate((incr));
+    if (spiral) scale(1, 0.99);
+  }
+  incr += .0005;//map(1, 0, 1000, -.005, .005);
+  popMatrix();
+};
+
+void mousePressed() {
+  spiral = !spiral;
+}
+
+
+
+
+
+
+
+</script>
+
+<canvas> </canvas>
+<script src='processing.min.js'></script>
+</body>
+
+<!-- Mirrored from digitonaut.com/art/viral_spiral/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Feb 2023 04:22:34 GMT -->
+</html>
